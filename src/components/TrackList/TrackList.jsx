@@ -1,12 +1,14 @@
 import tracks from '../../constants/constants';
 import { useState } from 'react'
 import './TrackList.css';
-import MoreTracks from '../MoreTracks/MoreTracks';
+import MoreTracks from '../../pages/MoreTracks/MoreTracks';
+import Player from '../../pages/Player/Player';
 
 const TrackList = () => {
 
     const [currentTrack, setCurrentTrack] = useState(null);
     const [visibleTracks, setVisibleTracks] = useState(3);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handleLoadMore = () => {
       setVisibleTracks((prevVisibleTracks) => prevVisibleTracks + 1);
@@ -17,8 +19,13 @@ const TrackList = () => {
         setCurrentTrack(null); // если текущий трек, тогда останавливаем на паузу
       } else {
         setCurrentTrack(track); // в другом случае включаем на воспроизведение новый трек
-      }
-    };
+        setIsPopupOpen(true);
+    }
+  }
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  }
 
     return (
         <div className='list'>
@@ -41,6 +48,7 @@ const TrackList = () => {
           {visibleTracks < tracks.length && (
         <MoreTracks handleLoadMore={handleLoadMore} />
       )}
+      {isPopupOpen && <Player isPopupOpen={isPopupOpen} track={currentTrack} handleClosePopup={handleClosePopup} /> }
         </div>
       );
 }

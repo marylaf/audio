@@ -1,0 +1,115 @@
+ .popup {
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 0.5s linear;
+  }
+
+  .popup_opened {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .music {
+    background-color: white;
+    min-width: 600px;
+    margin: 1em auto;
+    padding-bottom: 2em;
+    border: 0.1px solid black;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+
+  .music__button-drop {
+    width: 32px;
+    height: 32px;
+    border: none;
+    padding: 0;
+    background: none;
+    position: absolute;
+    right: -38px;
+    top: -38px;
+    opacity: 1;
+    background-image: url("../../vendor/images//Close.Icon.svg");
+    background-size: cover;
+  }
+  
+  .music__button-drop:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.5s linear;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .music__button-drop {
+      width: 20px;
+      height: 20px;
+      right: 0;
+    }
+  }
+
+  .music__title {
+    font-size: 35px;
+    font-weight: 500;
+  }
+
+  .music__name {
+    font-size: 25px;
+    font-weight: 450;
+  }
+
+  .music__subtitle {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .music__cover {
+    border-radius: 10%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+  
+  .button {
+    background: none;
+    border: none;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .subTitle {
+    margin-top: -1em;
+    color: #4f4f4f;
+  }
+  
+  .time {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    color: #828282;
+    font-size: smaller;
+  }
+  
+  .timeline {
+    width: 80%;
+    background-color: #27ae60;
+  }
+  
+  input[type="range"] {
+    background-color: #27ae60;
+  }
+  
+  @media (max-width: 900px) {
+    .component {
+      width: 50%;
+    }
+  }
