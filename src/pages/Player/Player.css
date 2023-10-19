@@ -22,7 +22,7 @@
     background-color: white;
     min-width: 600px;
     margin: 1em auto;
-    padding-bottom: 2em;
+    padding-bottom: 3em;
     border: 0.1px solid black;
     border-radius: 10px;
     position: relative;
@@ -75,7 +75,7 @@
   .music__cover {
     border-radius: 10%;
     max-width: 300px;
-    max-height: 300px;
+    min-height: 300px;
   }
   
   .button {
@@ -83,31 +83,14 @@
     border: none;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
-  
-  .subTitle {
-    margin-top: -1em;
-    color: #4f4f4f;
-  }
-  
-  .time {
-    margin: 0 auto;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    color: #828282;
-    font-size: smaller;
-  }
-  
+
   .timeline {
-    width: 80%;
-    background-color: #27ae60;
+    min-width: 300px;
+    cursor: pointer;
   }
-  
-  input[type="range"] {
-    background-color: #27ae60;
-  }
-  
+
   @media (max-width: 900px) {
     .component {
       width: 50%;

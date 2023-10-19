@@ -1,14 +1,39 @@
-import { useState } from "react";
-import useSound from "use-sound";
+import { useState, useEffect } from "react";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { IconContext } from "react-icons";
+import useSound from 'use-sound'; 
 import "./Player.css";
 import PropTypes from "prop-types";
 
 const Player = ({ track, isPopupOpen, handleClosePopup }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [play, { pause }] = useSound(track.audio);
+
+  const [play, { sound, pause, duration, }] = useSound(track.audio, track.duration);
+
+  console.log(useSound);
+
+  const [currTime, setCurrTime] = useState({
+    min: "00",
+    sec: "00",
+  }); // текущее положение звука в минутах и секундах
+
+  const [seconds, setSeconds] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        if (sound) {
+            setSeconds(sound.seek([])); // устанавливаем состояние с текущим значением в секундах
+            const min = Math.floor(sound.seek([]) / 60);
+            const sec = Math.floor(sound.seek([]) % 60);
+            setCurrTime({
+                min: min < 10 ? `0${min}` : min,
+                sec: sec < 10 ? `0${sec}` : sec,
+            });
+        }
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [sound]);
 
   const playingButton = () => {
     if (isPlaying) {
@@ -20,9 +45,13 @@ const Player = ({ track, isPopupOpen, handleClosePopup }) => {
     }
   };
 
+  const stopPropagation = (event) => {
+    event.stopPropagation();
+  };
+
   return (
-      <div className={`popup ${isPopupOpen ? "popup_opened" : ""}`}>
-        <div className="music">
+      <div className={`popup ${isPopupOpen ? "popup_opened" : ""}`}  onClick={handleClosePopup}>
+        <div className="music" onClick={stopPropagation}>
         <button
           className="music__button-drop"
           aria-label="Закрытие попапа"
@@ -60,6 +89,25 @@ const Player = ({ track, isPopupOpen, handleClosePopup }) => {
             </IconContext.Provider>
           </button>
         </div>
+
+        <div>
+        <div className="time">
+          <p>
+            {currTime.min}:{currTime.sec}
+          </p>
+        </div>
+        <input
+          type="range"
+          min="0"
+          max={duration / 1000}
+          default="0"
+          value={seconds}
+          className="timeline"
+          onChange={(e) => {
+            sound.seek([e.target.value]);
+          }}
+        />
+      </div>
         </div>
       </div>
   );

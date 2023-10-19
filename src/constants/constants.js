@@ -5,6 +5,13 @@ import forth_pic from "../vendor/images/4.jpg";
 import fifth_pic from "../vendor/images/5.jpg";
 import sixth_pic from "../vendor/images/6.jpg";
 
+import first_audio from "../vendor/audio/1.mp3";
+import second_audio from "../vendor/audio/2.mp3";
+import third_audio from "../vendor/audio/3.mp3";
+import forth_audio from "../vendor/audio/4.mp3";
+import fifth_audio from "../vendor/audio/5.mp3";
+import sixth_audio from "..//vendor/audio/6.mp3";
+
 const tracks = [
     {
       id: 1,
@@ -12,7 +19,7 @@ const tracks = [
       artist: 'Adele',
       duration: '4:55',
       cover: hello,
-      audio: 'ссылка_на_аудио_1.mp3',
+      audio: first_audio,
     },
     {
       id: 2,
@@ -20,7 +27,7 @@ const tracks = [
       artist: 'Adele',
       duration: '4:45',
       cover: second_pic,
-      audio: 'ссылка_на_аудио_2.mp3',
+      audio: second_audio,
     },
     {
       id: 3,
@@ -28,7 +35,7 @@ const tracks = [
       artist: 'Adele',
       duration: '3:48',
       cover:  third_pic,
-      audio: 'ссылка_на_аудио_3.mp3',
+      audio: third_audio,
     },
     {
       id: 4,
@@ -36,7 +43,7 @@ const tracks = [
       artist: 'Adele',
       duration: '4:01',
       cover: forth_pic,
-      audio: 'ссылка_на_аудио_4.mp3',
+      audio: forth_audio,
     },
     {
       id: 5,
@@ -44,7 +51,7 @@ const tracks = [
       artist: 'Adele',
       duration: '4:46',
       cover: fifth_pic,
-      audio: 'ссылка_на_аудио_5.mp3',
+      audio: fifth_audio,
     },
     {
       id: 6,
@@ -52,7 +59,7 @@ const tracks = [
       artist: 'Adele',
       duration: '4:51',
       cover: sixth_pic,
-      audio: 'ссылка_на_аудио_6.mp3',
+      audio: sixth_audio,
     },
   ];
   
