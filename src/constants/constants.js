@@ -1,10 +1,17 @@
+import hello from "../vendor/images/hello.jpg";
+import second_pic from "../vendor/images/2.jpg";
+import third_pic from "../vendor/images/3.jpg";
+import forth_pic from "../vendor/images/4.jpg";
+import fifth_pic from "../vendor/images/5.jpg";
+import sixth_pic from "../vendor/images/6.jpg";
+
 const tracks = [
     {
       id: 1,
       title: 'Hello',
       artist: 'Adele',
       duration: '4:55',
-      cover: 'ссылка_на_обложку_1.jpg',
+      cover: hello,
       audio: 'ссылка_на_аудио_1.mp3',
     },
     {
@@ -12,7 +19,7 @@ const tracks = [
       title: 'Someone Like You',
       artist: 'Adele',
       duration: '4:45',
-      cover: 'ссылка_на_обложку_2.jpg',
+      cover: second_pic,
       audio: 'ссылка_на_аудио_2.mp3',
     },
     {
@@ -20,7 +27,7 @@ const tracks = [
       title: 'Rolling in the Deep',
       artist: 'Adele',
       duration: '3:48',
-      cover: 'ссылка_на_обложку_3.jpg',
+      cover:  third_pic,
       audio: 'ссылка_на_аудио_3.mp3',
     },
     {
@@ -28,7 +35,7 @@ const tracks = [
       title: 'Set Fire to the Rain',
       artist: 'Adele',
       duration: '4:01',
-      cover: 'ссылка_на_обложку_4.jpg',
+      cover: forth_pic,
       audio: 'ссылка_на_аудио_4.mp3',
     },
     {
@@ -36,7 +43,7 @@ const tracks = [
       title: 'Skyfall',
       artist: 'Adele',
       duration: '4:46',
-      cover: 'ссылка_на_обложку_5.jpg',
+      cover: fifth_pic,
       audio: 'ссылка_на_аудио_5.mp3',
     },
     {
@@ -44,7 +51,7 @@ const tracks = [
       title: 'When We Were Young',
       artist: 'Adele',
       duration: '4:51',
-      cover: 'ссылка_на_обложку_6.jpg',
+      cover: sixth_pic,
       audio: 'ссылка_на_аудио_6.mp3',
     },
   ];

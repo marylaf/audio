@@ -1,0 +1,20 @@
+.more {
+margin-top: 40px;
+}
+
+.more__paragraph {
+    min-width: 120px;
+    background-color: #1b1b21;
+    color: #fff;
+    font-weight: 450px;
+    font-size: 22px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: opacity 0.9 infinite;
+}
+
+.more__paragraph:hover {
+    opacity: 0.7;
+}
