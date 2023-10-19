@@ -1,0 +1,7 @@
+@import url(./vendor/normalize.css);
+
+@import url(./vendor/fonts.css);
+
+#root {
+  font-family: "Futura PT";
+}

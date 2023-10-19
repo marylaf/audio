@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Futura PT";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/FuturaCyrillicBook.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura PT";
+  font-style: normal;
+  font-weight: 450;
+  src: url("./fonts/FuturaCyrillicMedium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Futura PT";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/FuturaCyrillicDemi.ttf") format("truetype");
+}
