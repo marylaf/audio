@@ -82,6 +82,7 @@ const TrackList = () => {
           setIsPopupOpen={setIsPopupOpen}
           handleNextTrack={handleNextTrack}
           handlePreviousTrack={handlePreviousTrack}
+          setCurrentTrack={setCurrentTrack}
         />
       )}
     </div>
