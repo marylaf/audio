@@ -1,56 +1,57 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { IconContext } from "react-icons";
-import useSound from 'use-sound'; 
+import ReactPlayer from 'react-player';
 import "./Player.css";
 import PropTypes from "prop-types";
 
-const Player = ({ track, isPopupOpen, handleClosePopup }) => {
+const Player = ({ track, isPopupOpen, setIsPopupOpen, handleNextTrack, handlePreviousTrack }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [playedSeconds, setPlayedSeconds] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-  const [play, { sound, pause, duration, }] = useSound(track.audio, track.duration);
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
 
-  console.log(useSound);
+  const handleProgress = progress => {
+    setPlayedSeconds(progress.playedSeconds);
+  };
 
-  const [currTime, setCurrTime] = useState({
-    min: "00",
-    sec: "00",
-  }); // текущее положение звука в минутах и секундах
+  const handleDuration = (dur) => {
+    setDuration(dur);
+  };
 
-  const [seconds, setSeconds] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-        if (sound) {
-            setSeconds(sound.seek([])); // устанавливаем состояние с текущим значением в секундах
-            const min = Math.floor(sound.seek([]) / 60);
-            const sec = Math.floor(sound.seek([]) % 60);
-            setCurrTime({
-                min: min < 10 ? `0${min}` : min,
-                sec: sec < 10 ? `0${sec}` : sec,
-            });
-        }
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [sound]);
+  const handleSeekChange = e => {
+    const value = parseFloat(e.target.value);
+    setPlayedSeconds(value);
+    playerRef.current.seekTo(value);
+  };
 
   const playingButton = () => {
-    if (isPlaying) {
-      pause(); // приостанавливаем воспроизведение звука
-      setIsPlaying(false);
-    } else {
-      play(); // воспроизводим аудиозапись
-      setIsPlaying(true);
-    }
+    setIsPlaying(!isPlaying);
   };
+
+  const formattedTime = (seconds) => {
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return {
+      min: min < 10 ? `0${min}` : min,
+      sec: sec < 10 ? `0${sec}` : sec,
+    };
+  };
+
+  const currTime = formattedTime(playedSeconds);
 
   const stopPropagation = (event) => {
     event.stopPropagation();
   };
 
+  const playerRef = useRef(null);
+
   return (
-      <div className={`popup ${isPopupOpen ? "popup_opened" : ""}`}  onClick={handleClosePopup}>
+      <div className={`popup ${isPopupOpen ? "popup_opened" : ""}`} onClick={handleClosePopup}>
         <div className="music" onClick={stopPropagation}>
         <button
           className="music__button-drop"
@@ -65,7 +66,7 @@ const Player = ({ track, isPopupOpen, handleClosePopup }) => {
           <p className="music__subtitle">{track.artist}</p>
         </div>
         <div>
-          <button className="button">
+          <button className="button" onClick={handlePreviousTrack}>
             <IconContext.Provider value={{ size: "3em", color: "#5151b5" }}>
               <BiSkipPrevious />
             </IconContext.Provider>
@@ -83,14 +84,21 @@ const Player = ({ track, isPopupOpen, handleClosePopup }) => {
               </IconContext.Provider>
             </button>
           )}
-          <button className="button">
+          <button className="button"  onClick={handleNextTrack}>
             <IconContext.Provider value={{ size: "3em", color: "#5151b5" }}>
               <BiSkipNext />
             </IconContext.Provider>
           </button>
         </div>
-
-        <div>
+        <ReactPlayer
+          ref={playerRef}
+          url={track.audio}
+          playing={isPlaying}
+          onDuration={handleDuration}
+          onProgress={handleProgress}
+          width="0"
+          height="0"
+        />
         <div className="time">
           <p>
             {currTime.min}:{currTime.sec}
@@ -99,15 +107,11 @@ const Player = ({ track, isPopupOpen, handleClosePopup }) => {
         <input
           type="range"
           min="0"
-          max={duration / 1000}
-          default="0"
-          value={seconds}
+          max={duration}
+          value={playedSeconds}
           className="timeline"
-          onChange={(e) => {
-            sound.seek([e.target.value]);
-          }}
+          onChange={handleSeekChange}
         />
-      </div>
         </div>
       </div>
   );
@@ -119,10 +123,11 @@ Player.propTypes = {
     audio: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     artist: PropTypes.string.isRequired,
-    duration: PropTypes.string.isRequired,
   }).isRequired,
   isPopupOpen: PropTypes.bool.isRequired,
-  handleClosePopup: PropTypes.func.isRequired,
+  setIsPopupOpen: PropTypes.func.isRequired, 
+  handleNextTrack: PropTypes.func.isRequired, 
+  handlePreviousTrack: PropTypes.func.isRequired,
 };
 
 export default Player;
