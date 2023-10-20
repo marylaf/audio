@@ -48,14 +48,6 @@
     opacity: 0.6;
     transition: opacity 0.5s linear;
   }
-  
-  @media screen and (max-width: 768px) {
-    .music__button-drop {
-      width: 20px;
-      height: 20px;
-      right: 0;
-    }
-  }
 
   .music__title {
     font-size: 35px;
@@ -91,8 +83,47 @@
     cursor: pointer;
   }
 
-  @media (max-width: 900px) {
-    .component {
-      width: 50%;
+  @media screen and (max-width: 768px) {
+    .music__button-drop {
+      width: 20px;
+      height: 20px;
+      right: 0;
+    }
+
+    .music {
+      min-width: 400px;
+    }
+
+    .music__cover {
+      max-width: 200px;
+      min-height: 200px;
+    }
+
+    .timeline {
+      min-width: 200px;
+      cursor: pointer;
+    }
+
+    .music__title {
+      font-size: 27px;
+    }
+
+    .music__name {
+      font-size: 22px;
+    }
+
+    .music__subtitle {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .music {
+      min-width: 280px;
+    }
+
+    .music__cover {
+      max-width: 150px;
+      min-height: 150px;
     }
   }
