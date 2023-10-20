@@ -84,7 +84,7 @@ const Player = ({ track, isPopupOpen, setIsPopupOpen, handleNextTrack, handlePre
               </IconContext.Provider>
             </button>
           )}
-          <button className="button"  onClick={handleNextTrack}>
+          <button className="button" onClick={handleNextTrack}>
             <IconContext.Provider value={{ size: "3em", color: "#5151b5" }}>
               <BiSkipNext />
             </IconContext.Provider>
