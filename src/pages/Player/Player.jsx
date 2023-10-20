@@ -6,13 +6,13 @@ import ReactPlayer from 'react-player';
 import "./Player.css";
 import PropTypes from "prop-types";
 
-const Player = ({ track, isPopupOpen, setIsPopupOpen, handleNextTrack, handlePreviousTrack }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const Player = ({ track, isPopupOpen, setIsPopupOpen, handleNextTrack, handlePreviousTrack, isPlaying, setIsPlaying }) => {
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [duration, setDuration] = useState(0);
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
+    console.log(isPlaying, 'в закртыии');
   };
 
   const handleProgress = progress => {
@@ -128,6 +128,8 @@ Player.propTypes = {
   setIsPopupOpen: PropTypes.func.isRequired, 
   handleNextTrack: PropTypes.func.isRequired, 
   handlePreviousTrack: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  setIsPlaying: PropTypes.func.isRequired,
 };
 
 export default Player;
